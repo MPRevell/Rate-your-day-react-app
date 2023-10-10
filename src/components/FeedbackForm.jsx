@@ -3,29 +3,46 @@ import Card from "./shared/Card";
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
 
-function FeedbackForm() {
+function FeedbackForm({ handleAdd }) {
   const [text, setText] = useState();
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
 
-  const handleTextChange = (event) => {
-    if (text === "") {
+  const handleTextChange = ({ target: { value } }) => {
+    // 👈  get the value
+    if (value === "") {
       setBtnDisabled(true);
-      setMessage(null);
-    } else if (text !== "" && text.trim().length <= 10) {
+      setMessage(null)
+
+      // prettier-ignore
+    } else if (value.trim().length < 10) {
+      // 👈 check for less than 10
+      setMessage("Text must be at least 10 characters");
       setBtnDisabled(true);
-      setMessage("Minimum of 10 characters required");
     } else {
       setMessage(null);
       setBtnDisabled(false);
     }
-    setText(event.target.value);
+    setText(value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (text.trim().length > 10) {
+      const newFeedback = {
+        text,
+        rating,
+      };
+      handleAdd(newFeedback);
+
+      setText("");
+    }
   };
 
   return (
     <Card>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2> How would you rate your day?</h2>
         <RatingSelect select={(rating) => setRating(rating)} />
         <div className="input-group">
