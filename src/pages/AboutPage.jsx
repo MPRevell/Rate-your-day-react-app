@@ -7,8 +7,8 @@ function AboutPage() {
       <div className="about">
         <h1>About this project</h1>
         <p>
-          Welcome to Rate your Day - An app where you can leave a review fow how
-          you day has gone (I hope it was a good one!)
+          Welcome to Rate your Day - An app where you can leave a review for how
+          your day has gone (Hope it was a good one!)
         </p>
         <p>Version: 1.0.0</p>
 
