@@ -15,7 +15,7 @@ function Header({ text, bgColor, textColor }) {
 }
 
 Header.defaultProps = {
-  text: "Feedback UI",
+  text: "Rate your Day",
   bgColor: "(0,0,0,0.4)",
   textColor: "#FF6A95",
 };
